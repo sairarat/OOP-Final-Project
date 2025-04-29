@@ -1,16 +1,14 @@
 package View.Mainframe;
 
-import Model.Resume;
-import View.Constants.CustomColors;
-
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.ActionListener;
 
 import static View.Constants.Font.cooperHewittBoldFont;
 import static View.Constants.Font.montFont;
 import static View.Setup.*;
 import static View.Setup.createLabel;
+import Model.Resume;
+import View.Constants.CustomColors;
 
 public class Language {
     public static JPanel languagesPanel = new JPanel(new GridBagLayout());
@@ -78,18 +76,6 @@ public class Language {
         gbc.gridy = 4;
         gbc.gridwidth = 3;
         languagesPanel.add(languagesScrollPane, gbc);
-
-        addLanguageButton.addActionListener(e -> {
-
-        });
-
-        removeLanguageButton.addActionListener(e -> {
-
-        });
-    }
-
-    public static void addLanguageListener(ActionListener actionListener){
-        addLanguageButton.addActionListener(actionListener);
     }
 
     public static void addLanguage(Resume resume){
@@ -105,10 +91,6 @@ public class Language {
         } else {
             JOptionPane.showMessageDialog(languagesPanel, "Please enter a language.");
         }
-    }
-
-    public static void removeLanguageListener(ActionListener actionListener){
-        removeLanguageButton.addActionListener(actionListener);
     }
 
     public static void removeLanguage(Resume resume){

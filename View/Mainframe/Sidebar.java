@@ -1,15 +1,13 @@
 package View.Mainframe;
 
-import View.Constants.CustomColors;
-
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionListener;
 
-import static View.Constants.CustomColors.customMainColor;
-import static View.Constants.CustomColors.customSidebarColor;
+import static View.Constants.CustomColors.*;
 import static View.Constants.Font.cooperHewittBoldFont;
 import static View.Setup.createSidebarButton;
+import View.Constants.CustomColors;
 
 public class Sidebar {
     public static JPanel sidebarPanel = new JPanel();
@@ -76,7 +74,6 @@ public class Sidebar {
     }
 
     public static void initColorDialog(JFrame frame){
-        colorDialog = new JDialog(frame, "Customize Colors", true);
 
         colorGbc.gridx = 0;
         colorGbc.gridy = 0;
@@ -98,11 +95,8 @@ public class Sidebar {
         colorDialog.setVisible(true);
     }
 
-    public static void customizeColorsListener(ActionListener actionListener){
-        customizeColorsButton.addActionListener(actionListener);
-    }
-
-    public static void customizeColors(){
+    public static void customizeColors(JFrame frame){
+        colorDialog = new JDialog(frame);
         colorDialog.setSize(400, 300);
         colorDialog.setLayout(new GridBagLayout());
         colorGbc.insets = new Insets(10, 10, 10, 10);
@@ -110,10 +104,6 @@ public class Sidebar {
 
         sidebarColorButton.setBackground(customSidebarColor);
         mainColorButton.setBackground(customMainColor);
-    }
-
-    public static void mainColorListener(ActionListener actionListener){
-        mainColorButton.addActionListener(actionListener);
     }
 
     public static void mainColor(){
@@ -124,20 +114,12 @@ public class Sidebar {
         }
     }
 
-    public static void sidebarColorListener(ActionListener actionListener){
-        sidebarColorButton.addActionListener(actionListener);
-    }
-
     public static void sidebarColor(){
         Color newColor = JColorChooser.showDialog(colorDialog, "Choose Sidebar Color", customSidebarColor);
         if (newColor != null) {
             customSidebarColor = newColor;
             sidebarColorButton.setBackground(newColor);
         }
-    }
-
-    public static void applyButtonListener(ActionListener actionListener){
-        applyButton.addActionListener(actionListener);
     }
 
     public static void applyButton(){

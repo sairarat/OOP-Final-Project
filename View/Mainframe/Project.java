@@ -1,17 +1,14 @@
 package View.Mainframe;
 
 import View.Constants.CustomColors;
-
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.ActionListener;
 import java.util.ArrayList;
 import java.util.List;
 
 import static View.Constants.Font.cooperHewittBoldFont;
 import static View.Constants.Font.montFont;
 import static View.Setup.*;
-import static View.Setup.createLabel;
 import Model.Resume;
 
 public class Project {
@@ -133,13 +130,6 @@ public class Project {
                 JOptionPane.showMessageDialog(projectPanel, "Please select an achievement to remove.");
             }
         });
-
-        addProjectButton.addActionListener(e -> {
-
-        });
-    }
-    public static void addProjectListener(ActionListener actionListener){
-        addProjectButton.addActionListener(actionListener);
     }
 
     public static void addProject(Resume resume){

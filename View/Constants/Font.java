@@ -11,7 +11,6 @@ public class Font {
     public static java.awt.Font montFont;
     public static java.awt.Font checkmarkFont;
 
-
     static {
         try {
             InputStream regularFontStream = Font.class.getResourceAsStream("/fonts/CooperHewitt-Medium.otf");

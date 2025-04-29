@@ -2,7 +2,6 @@ package View.Mainframe;
 
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.ActionListener;
 
 import static View.Constants.Font.cooperHewittBoldFont;
 import static View.Constants.Font.montFont;
@@ -107,10 +106,6 @@ public class Education {
         } else {
             JOptionPane.showMessageDialog(educationPanel, "Please fill all fields.");
         }
-    }
-
-    public static void addEducationListener(ActionListener actionListener){
-        addEducationButton.addActionListener(actionListener);
     }
 }
 

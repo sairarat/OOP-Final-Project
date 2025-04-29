@@ -1,17 +1,12 @@
 package View.Mainframe;
 
-import Model.Resume;
-import Model.Skill;
-import View.Constants.CustomColors;
-
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.ActionListener;
 
-import static View.Constants.Font.cooperHewittBoldFont;
-import static View.Constants.Font.montFont;
-import static View.Mainframe.Sidebar.contentPanel;
+import static View.Constants.Font.*;
 import static View.Setup.*;
+import Model.*;
+import View.Constants.CustomColors;
 
 public class Skills {
     public static JPanel skillsPanel = new JPanel(new GridBagLayout());
@@ -20,6 +15,7 @@ public class Skills {
     public static JButton addSkillButton = createContentButton("Add Skill");
     public static JButton removeSkillButton = createContentButton("Remove Skill");
     public static JList<String> skillsList = new JList<>(skillsListModel);
+
     static{
         // Skills Panel
         skillsPanel.setBackground(CustomColors.CONTENT_BG);
@@ -65,10 +61,6 @@ public class Skills {
         gbc.gridy = 3;
         gbc.gridwidth = 3;
         skillsPanel.add(skillsScrollPane, gbc);
-
-    }
-    public static void addSkillListener(ActionListener actionListener){
-        addSkillButton.addActionListener(actionListener);
     }
 
     public static void addSkill(Resume resume){
@@ -81,10 +73,6 @@ public class Skills {
         } else {
             JOptionPane.showMessageDialog(skillsPanel, "Please enter a skill.");
         }
-    }
-
-    public static void removeSkillListener(ActionListener actionListener){
-        removeSkillButton.addActionListener(actionListener);
     }
 
     public static void removeSkill(Resume resume){

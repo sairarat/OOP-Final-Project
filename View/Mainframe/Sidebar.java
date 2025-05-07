@@ -2,7 +2,6 @@ package View.Mainframe;
 
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.ActionListener;
 
 import static View.Constants.CustomColors.*;
 import static View.Constants.Font.cooperHewittBoldFont;
@@ -15,13 +14,13 @@ public class Sidebar {
     public static JButton personalInfoButton = createSidebarButton("PERSONAL INFO");
     public static JButton educationButton = createSidebarButton("EDUCATION");
     public static JButton workExperienceButton = createSidebarButton("WORK EXPERIENCE");
-    public static JButton projectsButton = createSidebarButton("PROJECTS");
+    public static JButton certificationButton = createSidebarButton("CERTIFICATION");
     public static JButton skillsButton = createSidebarButton("SKILLS");
     public static JButton languagesButton = createSidebarButton("LANGUAGES");
     public static JButton customizeColorsButton = createSidebarButton("CUSTOMIZE COLORS");
     public static JButton previewButton = createSidebarButton("PREVIEW RESUME");
     public static JButton saveButton = createSidebarButton("SAVE RESUME");
-    public static JButton[] sidebarButtons = {personalInfoButton, educationButton, workExperienceButton, projectsButton, skillsButton, languagesButton};
+    public static JButton[] sidebarButtons = {personalInfoButton, educationButton, workExperienceButton, certificationButton, skillsButton, languagesButton};
     public static JButton sidebarColorButton = new JButton("Choose Color");
     public static JButton mainColorButton = new JButton("Choose Color");
     public static JLabel sidebarColorLabel = new JLabel("Sidebar Color:");
@@ -46,7 +45,7 @@ public class Sidebar {
         personalInfoButton.setAlignmentX(Component.CENTER_ALIGNMENT);
         educationButton.setAlignmentX(Component.CENTER_ALIGNMENT);
         workExperienceButton.setAlignmentX(Component.CENTER_ALIGNMENT);
-        projectsButton.setAlignmentX(Component.CENTER_ALIGNMENT);
+        certificationButton.setAlignmentX(Component.CENTER_ALIGNMENT);
         skillsButton.setAlignmentX(Component.CENTER_ALIGNMENT);
         languagesButton.setAlignmentX(Component.CENTER_ALIGNMENT);
         customizeColorsButton.setAlignmentX(Component.CENTER_ALIGNMENT);
@@ -60,7 +59,7 @@ public class Sidebar {
         sidebarPanel.add(Box.createVerticalStrut(10));
         sidebarPanel.add(workExperienceButton);
         sidebarPanel.add(Box.createVerticalStrut(10));
-        sidebarPanel.add(projectsButton);
+        sidebarPanel.add(certificationButton);
         sidebarPanel.add(Box.createVerticalStrut(10));
         sidebarPanel.add(skillsButton);
         sidebarPanel.add(Box.createVerticalStrut(10));

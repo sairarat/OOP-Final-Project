@@ -148,21 +148,33 @@ public class ResumeOutput {
                     }
                 }
 
-                // Projects Section
-                if (!resume.getProjects().isEmpty()) {
+                // Certification Section
+                if (!resume.getCertifications().isEmpty()) {
                     g2d.setFont(cooperHewittBoldFont.deriveFont(14f));
-                    g2d.drawString("PROJECTS", mainX, mainY);
+                    g2d.drawString("CERTIFICATIONS", mainX, mainY);
                     mainY += lineHeight;
                     g2d.setFont(montFont.deriveFont(12f));
-                    for (Project project : resume.getProjects()) {
-                        g2d.drawString(project.getName(), mainX, mainY);
+                    for (Certification cert : resume.getCertifications()) {
+                        g2d.drawString(cert.getTitle(), mainX, mainY);
                         mainY += lineHeight;
-                        g2d.drawString(project.getDescription(), mainX, mainY);
+
+                        g2d.drawString(cert.getOrganization(), mainX, mainY);
                         mainY += lineHeight;
-                        for (String achievement : project.getAchievements()) {
-                            g2d.drawString("  * " + achievement, mainX + indent, mainY);
+
+                        if(!cert.getDateExpired().isEmpty()){
+                            g2d.drawString(cert.getDateReceived() + " - " + cert.getDateExpired(), mainX, mainY);
+                        }
+                        else{
+                            g2d.drawString(cert.getDateReceived(), mainX, mainY);
+                        }
+                        mainY += lineHeight;
+
+                        String[] descriptionLines = wrapText(cert.getDescription(), g2d, mainWidth);
+                        for (String line : descriptionLines) {
+                            g2d.drawString(line, mainX, mainY);
                             mainY += lineHeight;
                         }
+//                        g2d.drawString(cert.getDescription(), mainX, mainY);
                         mainY += lineHeight;
                     }
                 }
@@ -177,18 +189,11 @@ public class ResumeOutput {
         previewDialog.add(scrollPane, BorderLayout.CENTER);
 
         JPanel buttonPanel = new JPanel();
-        JButton saveButton = new JButton("Save");
-        JButton cancelButton = new JButton("Cancel");
-        buttonPanel.add(saveButton);
-        buttonPanel.add(cancelButton);
+        JButton closeButton = new JButton("Close");
+        buttonPanel.add(closeButton);
         previewDialog.add(buttonPanel, BorderLayout.SOUTH);
 
-        saveButton.addActionListener(e -> {
-            previewDialog.dispose();
-            saveButton.doClick();
-        });
-
-        cancelButton.addActionListener(e -> previewDialog.dispose());
+        closeButton.addActionListener(e -> previewDialog.dispose());
 
         previewDialog.setLocationRelativeTo(parent);
         previewDialog.setVisible(true);
@@ -209,8 +214,8 @@ public class ResumeOutput {
         }
         resume.setPersonalInfo(new PersonalInfo(name, title, email, phone, address, profile, resume.getPersonalInfo().getPhoto()));
 
-        if (resume.getEducations().isEmpty() && resume.getWorkExperiences().isEmpty() && resume.getProjects().isEmpty() && resume.getSkills().isEmpty() && resume.getLanguages().isEmpty()) {
-            JOptionPane.showMessageDialog(frame, "Please add at least one education, work experience, project, skill, or language.");
+        if (resume.getEducations().isEmpty() && resume.getWorkExperiences().isEmpty() && resume.getCertifications().isEmpty() && resume.getSkills().isEmpty() && resume.getLanguages().isEmpty()) {
+            JOptionPane.showMessageDialog(frame, "Please add at least one education, work experience, certification, skill, or language.");
             return false;
         }
         return true;
@@ -252,14 +257,19 @@ public class ResumeOutput {
                 }
             }
 
-            if (!resume.getProjects().isEmpty()) {
-                writer.println("PROJECTS");
-                for (Project project : resume.getProjects()) {
-                    writer.println(project.getName());
-                    writer.println(project.getDescription());
-                    for (String achievement : project.getAchievements()) {
-                        writer.println("  * " + achievement);
+            if (!resume.getCertifications().isEmpty()) {
+                writer.println("CERTIFICATION");
+                for (Certification certification : resume.getCertifications()) {
+                    writer.println(certification.getTitle());
+                    writer.println(certification.getOrganization());
+                    if(!certification.getDateExpired().isEmpty()){
+                        writer.println(certification.getDateReceived() + " - " + certification.getDateExpired());
                     }
+                    else{
+                        writer.println(certification.getDateReceived());
+                    }
+                    writer.println(certification.getDescription());
+                    writer.println();
                     writer.println();
                 }
             }
@@ -430,28 +440,39 @@ public class ResumeOutput {
                     }
                 }
 
-                // Projects Section
-                if (!resume.getProjects().isEmpty()) {
+                // Certification Section
+                if (!resume.getCertifications().isEmpty()) {
                     g2d.setFont(cooperHewittBoldFont.deriveFont(14f));
-                    g2d.drawString("PROJECTS", mainX, mainY);
+                    g2d.drawString("CERTIFICATIONS", mainX, mainY);
                     mainY += lineHeight;
                     g2d.setFont(montFont.deriveFont(12f));
-                    for (Project project : resume.getProjects()) {
-                        g2d.drawString(project.getName(), mainX, mainY);
+                    for (Certification cert : resume.getCertifications()) {
+                        g2d.drawString(cert.getTitle(), mainX, mainY);
                         mainY += lineHeight;
-                        g2d.drawString(project.getDescription(), mainX, mainY);
+
+                        g2d.drawString(cert.getOrganization(), mainX, mainY);
                         mainY += lineHeight;
-                        for (String achievement : project.getAchievements()) {
-                            g2d.drawString("  * " + achievement, mainX + indent, mainY);
+
+                        if(!cert.getDateExpired().isEmpty()){
+                            g2d.drawString(cert.getDateReceived() + " - " + cert.getDateExpired(), mainX, mainY);
+                        }
+                        else{
+                            g2d.drawString(cert.getDateReceived(), mainX, mainY);
+                        }
+                        mainY += lineHeight;
+
+                        String[] descriptionLines = wrapText(cert.getDescription(), g2d, mainWidth);
+                        for (String line : descriptionLines) {
+                            g2d.drawString(line, mainX, mainY);
                             mainY += lineHeight;
                         }
+//                        g2d.drawString(cert.getDescription(), mainX, mainY);
                         mainY += lineHeight;
                     }
                 }
                 return Printable.PAGE_EXISTS;
             }
         });
-
         job.setJobName(fileName);
 
         if (job.printDialog()) {

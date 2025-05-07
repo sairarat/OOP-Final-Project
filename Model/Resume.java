@@ -7,7 +7,7 @@ public class Resume {
     PersonalInfo personalInfo;
     List<Education> educations = new ArrayList<>();
     List<WorkExperience> workExperiences = new ArrayList<>();
-    List<Project> projects = new ArrayList<>();
+    List<Certification> certifications = new ArrayList<>();
     List<Skill> skills = new ArrayList<>();
     List<Language> languages = new ArrayList<>();
 
@@ -23,8 +23,8 @@ public class Resume {
         workExperiences.add(exp);
     }
 
-    public void addProject(Project project) {
-        projects.add(project);
+    public void addCertification(Certification certification) {
+        certifications.add(certification);
     }
 
     public void addSkill(Skill skill) {
@@ -59,12 +59,12 @@ public class Resume {
         this.workExperiences = workExperiences;
     }
 
-    public List<Model.Project> getProjects() {
-        return projects;
+    public List<Certification> getCertifications() {
+        return certifications;
     }
 
-    public void setProjects(List<Project> projects) {
-        this.projects = projects;
+    public void setCertifications(List<Certification> certifications) {
+        this.certifications = certifications;
     }
 
     public List<Model.Skill> getSkills() {

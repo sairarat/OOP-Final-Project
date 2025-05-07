@@ -9,7 +9,7 @@ import static View.Setup.updateButtonSelection;
 import static View.Mainframe.PersonalInfo.*;
 import static View.Mainframe.Education.*;
 import static View.Mainframe.WorkExperience.*;
-import static View.Mainframe.Project.*;
+import static View.Mainframe.Certification.*;
 import static View.Mainframe.Skills.*;
 import static View.Mainframe.Language.*;
 import static View.ResumeOutput.*;
@@ -45,9 +45,9 @@ public class Controller {
         addWorkButton.addActionListener(e -> addWork(resume));
         contentPanel.add(workPanel, "Work Experience");
 
-        // Projects Panel
-        addProjectButton.addActionListener(e -> addProject(resume));
-        contentPanel.add(projectPanel, "Projects");
+        // Certification Panel
+        addCertButton.addActionListener(e -> addCertification(resume));
+        contentPanel.add(certPanel, "Certification");
 
         // Skills Panel
         addSkillButton.addActionListener(e -> addSkill(resume));
@@ -71,8 +71,6 @@ public class Controller {
 
             // Apply Button
             applyButton.addActionListener(e1 -> applyButton());
-            //applyButton.addActionListener(e1 -> colorDialog.dispose());
-
             initColorDialog(frame);
         });
 
@@ -89,9 +87,9 @@ public class Controller {
             cardLayout.show(contentPanel, "Work Experience");
             updateButtonSelection(workExperienceButton, sidebarButtons);
         });
-        projectsButton.addActionListener(e -> {
-            cardLayout.show(contentPanel, "Projects");
-            updateButtonSelection(projectsButton, sidebarButtons);
+        certificationButton.addActionListener(e -> {
+            cardLayout.show(contentPanel, "Certification");
+            updateButtonSelection(certificationButton, sidebarButtons);
         });
         skillsButton.addActionListener(e -> {
             cardLayout.show(contentPanel, "Skills");
@@ -129,5 +127,4 @@ public class Controller {
         frame.add(contentPanel, BorderLayout.CENTER);
         frame.setVisible(true);
     }
-
 }
